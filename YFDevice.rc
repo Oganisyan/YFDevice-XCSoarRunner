@@ -1,0 +1,191 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// German (Germany) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+#ifdef _WIN32
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)\r\n"
+    "LANGUAGE 7, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\YFDevice.rc2""  // Nicht mit Microsoft Visual C++ bearbeitete Ressourcen\r\n"
+    "#include ""l.DEU\\afxres.rc""      // Standardkomponenten\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\YFDevice.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_YFDEVICE_DIALOG DIALOG  0, 0, 125, 159
+STYLE DS_SETFONT | DS_SETFOREGROUND | WS_POPUP | WS_VISIBLE | WS_SYSMENU
+EXSTYLE WS_EX_STATICEDGE | WS_EX_APPWINDOW | 0x80000000L
+FONT 12, "MS Sans Serif"
+BEGIN
+    CONTROL         "Abbrechen",IDC_BUTTON_CANCEL,"Button",BS_OWNERDRAW | BS_NOTIFY | WS_TABSTOP,9,132,106,21
+    CONTROL         "BikeNavi Starten",IDC_BUTTON_BIKE_NAVI,"Button",BS_OWNERDRAW | WS_TABSTOP,9,38,106,21
+    CONTROL         "BlueTooth",IDC_BUTTON_BLUETOOTH,"Button",BS_OWNERDRAW | WS_DISABLED | WS_TABSTOP,9,69,106,21
+    CONTROL         "Bildschirm sperren",IDC_BUTTON_LOCK,"Button",BS_OWNERDRAW | WS_TABSTOP,9,7,106,21
+    CONTROL         "Ausschalten",IDC_BUTTON_OFF,"Button",BS_OWNERDRAW | WS_TABSTOP,9,100,106,21
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040704e4"
+        BEGIN
+            VALUE "CompanyName", "TODO: <Firmenname>"
+            VALUE "FileDescription", "TODO: <Dateibeschreibung>"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "YFDevice.exe"
+            VALUE "LegalCopyright", "TODO: (c) <Firmenname>. Alle Rechte vorbehalten."
+            VALUE "OriginalFilename", "YFDevice.exe"
+            VALUE "ProductName", "TODO: <Produktname>"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x407, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_YFDEVICE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 9
+        RIGHTMARGIN, 115
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 148
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP_OFF          BITMAP                  "res\\off.bmp"
+IDB_BITMAP_CANCEL       BITMAP                  "res\\cancel.bmp"
+IDB_BITMAP_BT           BITMAP                  "res\\bt.bmp"
+IDB_BITMAP_LOCK         BITMAP                  "res\\lock.bmp"
+IDB_BITMAP_UNLOCK       BITMAP                  "res\\unlock.bmp"
+IDB_BITMAP_NAVI         BITMAP                  "res\\navi.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_OFF          "Ausschalten"
+END
+
+#endif    // German (Germany) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+LANGUAGE 7, 1
+#pragma code_page(1252)
+#include "res\YFDevice.rc2"  // Nicht mit Microsoft Visual C++ bearbeitete Ressourcen
+#include "l.DEU\afxres.rc"      // Standardkomponenten
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
