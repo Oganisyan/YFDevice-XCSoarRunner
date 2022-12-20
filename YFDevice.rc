@@ -13,7 +13,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// German (Germany) resources
+// Deutsch (Deutschland) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
 #ifdef _WIN32
@@ -71,16 +71,17 @@ IDR_MAINFRAME           ICON                    "res\\YFDevice.ico"
 // Dialog
 //
 
-IDD_YFDEVICE_DIALOG DIALOG  0, 0, 125, 159
-STYLE DS_SETFONT | DS_SETFOREGROUND | WS_POPUP | WS_VISIBLE | WS_SYSMENU
+IDD_YFDEVICE_DIALOG DIALOG  0, 0, 125, 160
+STYLE DS_SETFONT | DS_SETFOREGROUND | DS_CONTROL | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_SYSMENU
 EXSTYLE WS_EX_STATICEDGE | WS_EX_APPWINDOW | 0x80000000L
 FONT 12, "MS Sans Serif"
 BEGIN
-    CONTROL         "Abbrechen",IDC_BUTTON_CANCEL,"Button",BS_OWNERDRAW | BS_NOTIFY | WS_TABSTOP,9,132,106,21
-    CONTROL         "BikeNavi Starten",IDC_BUTTON_BIKE_NAVI,"Button",BS_OWNERDRAW | WS_TABSTOP,9,38,106,21
-    CONTROL         "BlueTooth",IDC_BUTTON_BLUETOOTH,"Button",BS_OWNERDRAW | WS_DISABLED | WS_TABSTOP,9,69,106,21
-    CONTROL         "Bildschirm sperren",IDC_BUTTON_LOCK,"Button",BS_OWNERDRAW | WS_TABSTOP,9,7,106,21
-    CONTROL         "Ausschalten",IDC_BUTTON_OFF,"Button",BS_OWNERDRAW | WS_TABSTOP,9,100,106,21
+    CONTROL         "Abbrechen",IDC_BUTTON_CANCEL,"Button",BS_OWNERDRAW | BS_NOTIFY | WS_TABSTOP,9,133,106,21,WS_EX_DLGMODALFRAME
+    CONTROL         "BikeNavi Starten",IDC_BUTTON_BIKE_NAVI,"Button",BS_OWNERDRAW | WS_TABSTOP,9,55,106,21,WS_EX_DLGMODALFRAME
+    CONTROL         "XC Soar",IDC_BUTTON_XCSOAR,"Button",BS_OWNERDRAW | WS_TABSTOP,9,30,106,21,WS_EX_DLGMODALFRAME
+    CONTROL         "Bildschirm sperren",IDC_BUTTON_LOCK,"Button",BS_OWNERDRAW | BS_NOTIFY | WS_TABSTOP,9,5,106,21,WS_EX_DLGMODALFRAME
+    CONTROL         "Ausschalten",IDC_BUTTON_OFF,"Button",BS_OWNERDRAW | WS_TABSTOP,9,107,106,21,WS_EX_DLGMODALFRAME
+    CONTROL         "Explorer",IDC_BUTTON_WINDOWS,"Button",BS_OWNERDRAW | WS_TABSTOP,9,81,106,21,WS_EX_DLGMODALFRAME
 END
 
 
@@ -136,7 +137,7 @@ BEGIN
         LEFTMARGIN, 9
         RIGHTMARGIN, 115
         TOPMARGIN, 7
-        BOTTOMMARGIN, 148
+        BOTTOMMARGIN, 149
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -149,10 +150,11 @@ END
 
 IDB_BITMAP_OFF          BITMAP                  "res\\off.bmp"
 IDB_BITMAP_CANCEL       BITMAP                  "res\\cancel.bmp"
-IDB_BITMAP_BT           BITMAP                  "res\\bt.bmp"
+IDB_BITMAP_XCSOAR       BITMAP                  "res\\bt.bmp"
 IDB_BITMAP_LOCK         BITMAP                  "res\\lock.bmp"
 IDB_BITMAP_UNLOCK       BITMAP                  "res\\unlock.bmp"
 IDB_BITMAP_NAVI         BITMAP                  "res\\navi.bmp"
+IDB_BITMAP_WINDOWS      BITMAP                  "res\\bitmapWindows.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -164,7 +166,7 @@ BEGIN
     IDS_STRING_OFF          "Ausschalten"
 END
 
-#endif    // German (Germany) resources
+#endif    // Deutsch (Deutschland) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

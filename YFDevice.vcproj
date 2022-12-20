@@ -30,6 +30,9 @@
 		<Platform
 			Name="STANDARDSDK_500 (MIPSIV_FP)"
 		/>
+		<Platform
+			Name="Toradex_CE600 (ARMv4I)"
+		/>
 	</Platforms>
 	<ToolFiles>
 	</ToolFiles>
@@ -639,6 +642,96 @@
 			/>
 		</Configuration>
 		<Configuration
+			Name="Debug|Toradex_CE600 (ARMv4I)"
+			OutputDirectory="Toradex_CE600 (ARMv4I)\$(ConfigurationName)"
+			IntermediateDirectory="Toradex_CE600 (ARMv4I)\$(ConfigurationName)"
+			ConfigurationType="1"
+			UseOfMFC="1"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG;_WIN32_WCE=$(CEVER);UNDER_CE"
+				MkTypLibCompatible="false"
+				TargetEnvironment="1"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				ExecutionBucket="7"
+				Optimization="0"
+				PreprocessorDefinitions="_DEBUG;_WIN32_WCE=$(CEVER);UNDER_CE;WINCE;DEBUG;$(ARCHFAM);$(_ARCHFAM_);STANDARDSHELL_UI_MODEL"
+				MinimalRebuild="true"
+				RuntimeLibrary="1"
+				UsePrecompiledHeader="2"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG;_WIN32_WCE=$(CEVER);UNDER_CE"
+				Culture="1031"
+				AdditionalIncludeDirectories="$(IntDir)"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions=" /subsystem:windowsce,5.00"
+				AdditionalDependencies="toolhelp.lib  ws2.lib"
+				OutputFile="$(OutDir)\SetupYF.exe"
+				LinkIncremental="2"
+				GenerateDebugInformation="true"
+				StackReserveSize="65536"
+				StackCommitSize="4096"
+				EntryPointSymbol="WinMainCRTStartup"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				TargetMachine="0"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCCodeSignTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+			<DeploymentTool
+				ForceDirty="-1"
+				RemoteDirectory=""
+				RegisterOutput="0"
+				AdditionalFiles=""
+			/>
+			<DebuggerTool
+			/>
+		</Configuration>
+		<Configuration
 			Name="Release|STANDARDSDK_500 (ARMV4I)"
 			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
@@ -671,7 +764,7 @@
 				PreprocessorDefinitions="NDEBUG;_WIN32_WCE=$(CEVER);UNDER_CE;WINCE;$(ARCHFAM);$(_ARCHFAM_);STANDARDSHELL_UI_MODEL"
 				MinimalRebuild="false"
 				RuntimeLibrary="0"
-				UsePrecompiledHeader="2"
+				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 			/>
@@ -690,8 +783,9 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions=" /subsystem:windowsce,5.00"
-				AdditionalDependencies="toolhelp.lib ws2.lib"
-				OutputFile="$(OutDir)\SetupYF.exe"
+				AdditionalDependencies="toolhelp.lib  ws2.lib"
+				OutputFile="$(OutDir)\AutoRunCE.exe"
+				AdditionalLibraryDirectories="&quot;C:\Program Files (x86)\Windows Mobile 5.0 SDK R2\Smartphone\Lib\ARMV4I&quot;"
 				StackReserveSize="65536"
 				StackCommitSize="4096"
 				OptimizeReferences="2"
@@ -720,7 +814,7 @@
 			/>
 			<DeploymentTool
 				ForceDirty="-1"
-				RemoteDirectory=""
+				RemoteDirectory="%CSIDL_PROGRAM_FILES%\AutoRunCE"
 				RegisterOutput="0"
 				AdditionalFiles=""
 			/>
@@ -1233,6 +1327,98 @@
 				EntryPointSymbol="WinMainCRTStartup"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCCodeSignTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+			<DeploymentTool
+				ForceDirty="-1"
+				RemoteDirectory=""
+				RegisterOutput="0"
+				AdditionalFiles=""
+			/>
+			<DebuggerTool
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Toradex_CE600 (ARMv4I)"
+			OutputDirectory="$(SolutionDir)Toradex_CE600 (ARMv4I)\$(ConfigurationName)"
+			IntermediateDirectory="Toradex_CE600 (ARMv4I)\$(ConfigurationName)"
+			ConfigurationType="1"
+			UseOfMFC="1"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="NDEBUG;_WIN32_WCE=$(CEVER);UNDER_CE"
+				MkTypLibCompatible="false"
+				TargetEnvironment="1"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				ExecutionBucket="7"
+				Optimization="2"
+				FavorSizeOrSpeed="2"
+				AdditionalIncludeDirectories=""
+				PreprocessorDefinitions="NDEBUG;_WIN32_WCE=$(CEVER);UNDER_CE;WINCE;$(ARCHFAM);$(_ARCHFAM_);STANDARDSHELL_UI_MODEL"
+				MinimalRebuild="false"
+				RuntimeLibrary="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG;_WIN32_WCE=$(CEVER);UNDER_CE"
+				Culture="1031"
+				AdditionalIncludeDirectories="$(IntDir)"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions=" /subsystem:windowsce,5.00"
+				AdditionalDependencies="toolhelp.lib  ws2.lib"
+				OutputFile="$(OutDir)\AutoRunCE.exe"
+				AdditionalLibraryDirectories="&quot;C:\Program Files (x86)\Windows CE Tools\SDKs\Toradex_CE600\Lib\ARMv4I&quot;"
+				StackReserveSize="65536"
+				StackCommitSize="4096"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				EntryPointSymbol="WinMainCRTStartup"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				TargetMachine="0"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -1776,6 +1962,73 @@
 			<DebuggerTool
 			/>
 		</Configuration>
+		<Configuration
+			Name="test|Toradex_CE600 (ARMv4I)"
+			OutputDirectory="$(SolutionDir)Toradex_CE600 (ARMv4I)\$(ConfigurationName)"
+			IntermediateDirectory="Toradex_CE600 (ARMv4I)\$(ConfigurationName)"
+			ConfigurationType="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="1"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				ExecutionBucket="7"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				OutputFile="$(OutDir)\SetupYF.exe"
+				TargetMachine="0"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCCodeSignTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+			<DeploymentTool
+				ForceDirty="-1"
+				RemoteDirectory=""
+				RegisterOutput="0"
+				AdditionalFiles=""
+			/>
+			<DebuggerTool
+			/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>
@@ -1785,14 +2038,6 @@
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
-			<File
-				RelativePath=".\YFDevice.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\YFDeviceDlg.cpp"
-				>
-			</File>
 			<File
 				RelativePath=".\MyButton.cpp"
 				>
@@ -1857,6 +2102,14 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
+					Name="Debug|Toradex_CE600 (ARMv4I)"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
 					Name="Release|STANDARDSDK_500 (ARMV4I)"
 					>
 					<Tool
@@ -1913,6 +2166,14 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
+					Name="Release|Toradex_CE600 (ARMv4I)"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
 					Name="test|STANDARDSDK_500 (x86)"
 					>
 					<Tool
@@ -1937,20 +2198,20 @@
 					/>
 				</FileConfiguration>
 			</File>
+			<File
+				RelativePath=".\YFDevice.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\YFDeviceDlg.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
-			<File
-				RelativePath=".\YFDevice.h"
-				>
-			</File>
-			<File
-				RelativePath=".\YFDeviceDlg.h"
-				>
-			</File>
 			<File
 				RelativePath=".\MyButton.h"
 				>
@@ -1963,6 +2224,14 @@
 				RelativePath=".\stdafx.h"
 				>
 			</File>
+			<File
+				RelativePath=".\YFDevice.h"
+				>
+			</File>
+			<File
+				RelativePath=".\YFDeviceDlg.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
@@ -1970,15 +2239,7 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
-				RelativePath=".\res\YFDevice.ico"
-				>
-			</File>
-			<File
-				RelativePath=".\YFDevice.rc"
-				>
-			</File>
-			<File
-				RelativePath=".\res\YFDevice.rc2"
+				RelativePath=".\res\bitmap_c.bmp"
 				>
 			</File>
 			<File
@@ -2005,7 +2266,19 @@
 				RelativePath=".\res\unlock.bmp"
 				>
 			</File>
+			<File
+				RelativePath=".\res\YFDevice.ico"
+				>
+			</File>
+			<File
+				RelativePath=".\YFDevice.rc"
+				>
+			</File>
 		</Filter>
+		<File
+			RelativePath=".\ClassDiagram1.cd"
+			>
+		</File>
 		<File
 			RelativePath=".\ReadMe.txt"
 			>
