@@ -6,6 +6,7 @@
 
 #pragma comment(linker, "/nodefaultlib:libc.lib")
 #pragma comment(linker, "/nodefaultlib:libcd.lib")
+#pragma warning(disable : 4996)
 
 // HINWEIS: Dieser Wert steht in keinem engen Zusammenhang mit der verwendeten Version von Windows CE
 #define WINVER _WIN32_WCE

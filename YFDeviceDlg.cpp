@@ -10,7 +10,8 @@
 #include <winsock2.h>
 #include <ws2bth.h>
 #include <Bt_api.h.>
-
+#include <Commctrl.h>
+#include <vector>
 
 
 
@@ -21,16 +22,33 @@ extern "C" BOOL KernelIoControl(DWORD dwIoControlCode,  LPVOID lpInBuf,  DWORD n
   LPVOID lpOutBuf,  DWORD nOutBufSize,  LPDWORD lpBytesReturned);
 
 
+std::vector<std::wstring> volCtrlCmds;
+
+
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
 // CYFDeviceDlg-Dialogfeld
 
-CYFDeviceDlg::CYFDeviceDlg(CWnd* pParent /*=NULL*/)
-	: CDialog(CYFDeviceDlg::IDD, pParent)
-	, bScreanLocked(true)
+CYFDeviceDlg::CYFDeviceDlg(CWnd* pParent)
+	: CDialog(CYFDeviceDlg::IDD, pParent), 
+	log(LOG_FILE),
+	cfg_(log),
+	bScreanLocked(true), 
+	displayOrientation(DMDO_0),
+	server(cfg_, log)
+
 {
+	int volCtrlCmdCount = _wtoi(CFG_LIST_COUNT(cfg_,SENSOR_VOLCMD).c_str());
+	log << _T("VolCtrl Cmd Count: ") << volCtrlCmdCount  << std::endl;
+
+	volCtrlCmds.resize(volCtrlCmdCount);
+	for(int i=0; i < volCtrlCmdCount; i++) {
+		volCtrlCmds[i] = CFG_LIST_ITEM(cfg_, SENSOR_VOLCMD, i);
+		log << _T("\t Cmd ") << i << _T(": ")   << volCtrlCmds[i]  << std::endl;
+	}
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 	hEvent = CreateEvent(NULL, TRUE, FALSE, _T("HW_BT_POWER_UP"));	
 	InitChildProcess();
@@ -46,6 +64,8 @@ void CYFDeviceDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BUTTON_XCSOAR, mButtonXCSoar);
 	DDX_Control(pDX, IDC_BUTTON_OFF, mButtonOff);
 	DDX_Control(pDX, IDC_BUTTON_WINDOWS, mButtonWindows);
+	DDX_Control(pDX, IDC_SLIDER_SOUND, mSliderCtrl);
+	DDX_Control(pDX, IDC_BUTTON_ROTATE, mButtonRotate);
 }
 
 BEGIN_MESSAGE_MAP(CYFDeviceDlg, CDialog)
@@ -59,8 +79,10 @@ ON_BN_CLICKED(IDC_BUTTON_XCSOAR, &CYFDeviceDlg::OnBnClickedButtonXcsoar)
 ON_BN_CLICKED(IDC_BUTTON_WINDOWS, &CYFDeviceDlg::OnBnClickedButtonWindows)
 ON_BN_CLICKED(IDC_BUTTON_OFF, &CYFDeviceDlg::OnBnClickedButtonOff)
 ON_BN_CLICKED(IDC_BUTTON_CANCEL, &CYFDeviceDlg::OnBnClickedCancel)
+ON_BN_CLICKED(IDC_BUTTON_ROTATE, &CYFDeviceDlg::OnBnClickedButtonRotate)
 ON_WM_ACTIVATE()
 ON_WM_TIMER()
+ON_NOTIFY(NM_CUSTOMDRAW, IDC_SLIDER_SOUND, &CYFDeviceDlg::OnNMCustomdrawSliderSound)
 END_MESSAGE_MAP()
 
 
@@ -75,18 +97,17 @@ BOOL CYFDeviceDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// Großes Symbol verwenden
 	SetIcon(m_hIcon, FALSE);		// Kleines Symbol verwenden
 
-    DWORD dwAttrib = GetFileAttributes(XC_SOAR_EXE_PATH);
-
-	mButtonBikeNavi.EnableWindow(dwAttrib != 
-		INVALID_FILE_ATTRIBUTES && !(dwAttrib & FILE_ATTRIBUTE_DIRECTORY));
 	mButtonLock.EnableWindow(xcSoarWnd != NULL); 
 	mButtonLock.SetBitMap(IDB_BITMAP_UNLOCK);
+	mButtonRotate.SetBitMap(IDB_BITMAP_ROTATE);
 	mButtonWindows.SetBitMap(IDB_BITMAP_WINDOWS);
 	mButtonCancel.SetBitMap(IDB_BITMAP_CANCEL);
 	mButtonBikeNavi.SetBitMap(IDB_BITMAP_NAVI);
 	mButtonXCSoar.SetBitMap(IDB_BITMAP_XCSOAR);
 	mButtonOff.SetBitMap(IDB_BITMAP_OFF);
+	mSliderCtrl.SetRange(0, 9, TRUE);
 	
+	OnBnClickedButtonXcsoar();
 	return TRUE;  // Geben Sie TRUE zurück, außer ein Steuerelement soll den Fokus erhalten
 }
 
@@ -148,7 +169,7 @@ void CYFDeviceDlg::OnTimer(UINT_PTR nIDEvent)
 		}
 	}else if(nIDEvent == 2) {
 		KillTimer(nIDEvent);
-		SetTimer(1, 100, NULL);
+		SetTimer(1, 5, NULL);
 		ShowWindow(SW_HIDE);
 	} 
 	CDialog::OnTimer(nIDEvent); 
@@ -169,13 +190,13 @@ HANDLE CYFDeviceDlg::CreateProcess(LPCWSTR pProcessName)
 
 void CYFDeviceDlg::InitChildProcess()
 {
-	KillProcess(BIKE_NAV_EXE);
+	KillProcess(getFileName(CFG(cfg_, BIKE_NAV_PATH)).c_str());
 	if(WaitForSingleObject(hEvent, 3000) == WAIT_TIMEOUT) {
-		hChildProcess = CreateProcess(XC_SOAR_EXE_PATH);
+		hChildProcess = CreateProcess(CFG(cfg_, XC_SOAR_PATH).c_str());
 		Sleep(1000);
 	} else {
 		ResetEvent(hEvent);
-		hChildProcess = CreateProcess(EXPLORER_PATH);
+		hChildProcess = CreateProcess(CFG(cfg_, WIN_EXPLORER_PATH).c_str());
 	}
 }
 
@@ -227,7 +248,7 @@ HANDLE  CYFDeviceDlg::GetProcessHandle(LPCWSTR szProcessName)
 void CYFDeviceDlg::OnBnClickedButtonBikeNavi()
 {
 	TerminateProcess(hChildProcess, 0);
-	hChildProcess = CreateProcess(BIKE_NAV_EXE_PATH);
+	hChildProcess = CreateProcess(CFG(cfg_, BIKE_NAV_PATH).c_str());
 	mButtonBikeNavi.EnableWindow(FALSE);
 	mButtonXCSoar.EnableWindow(TRUE);
 	mButtonWindows.EnableWindow(TRUE);
@@ -238,7 +259,7 @@ void CYFDeviceDlg::OnBnClickedButtonBikeNavi()
 void CYFDeviceDlg::OnBnClickedButtonXcsoar()
 {
 	TerminateProcess(hChildProcess, 0);
-	hChildProcess = CreateProcess(XC_SOAR_EXE_PATH);
+	hChildProcess = CreateProcess(CFG(cfg_, XC_SOAR_PATH).c_str());
 	mButtonBikeNavi.EnableWindow(TRUE);
 	mButtonXCSoar.EnableWindow(FALSE);
 	mButtonWindows.EnableWindow(TRUE);
@@ -247,9 +268,61 @@ void CYFDeviceDlg::OnBnClickedButtonXcsoar()
 void CYFDeviceDlg::OnBnClickedButtonWindows()
 {
 	TerminateProcess(hChildProcess, 0);
-	hChildProcess = CreateProcess(EXPLORER_PATH);
+	hChildProcess = CreateProcess(CFG(cfg_, WIN_EXPLORER_PATH).c_str());
 	mButtonBikeNavi.EnableWindow(TRUE);
 	mButtonXCSoar.EnableWindow(TRUE);
 	mButtonWindows.EnableWindow(FALSE);
+
+}
+
+
+void CYFDeviceDlg::OnNMCustomdrawSliderSound(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	
+	LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR);
+	int pos = (mSliderCtrl.GetPos() >= sizeof(volCtrlCmds)) ? sizeof(volCtrlCmds)-1 
+		: (mSliderCtrl.GetPos() < 0) ? 0 : mSliderCtrl.GetPos();
+
+
+	std::string cmd;
+	cmd.resize(volCtrlCmds[pos].size() * sizeof(wchar_t) / sizeof(char) + 2);
+	int len = wcstombs(&cmd[0],volCtrlCmds[pos].c_str(), volCtrlCmds[pos].size() * sizeof(wchar_t) / sizeof(char));
+	cmd[len++] = '\r';
+	cmd[len++] = '\n';
+
+	server.serialSend(cmd.c_str(), len);
+	*pResult = 0;
+}
+
+
+void CYFDeviceDlg::OnBnClickedButtonRotate()
+{
+
+
+	switch(displayOrientation ) {
+		default:
+		case DMDO_0:
+			displayOrientation = DMDO_90;
+			break;
+		case DMDO_90:
+			displayOrientation = DMDO_180;
+			break;
+		case DMDO_180:
+			displayOrientation = DMDO_270;
+			break;
+		case DMDO_270:
+			displayOrientation = DMDO_0;
+			break;
+	}
+
+	DEVMODE devMode;
+	memset(&devMode, 0, sizeof(DEVMODE));
+	devMode.dmSize = sizeof(DEVMODE);
+	devMode.dmFields = DM_DISPLAYORIENTATION;
+	devMode.dmDisplayOrientation = displayOrientation;
+	if (DISP_CHANGE_SUCCESSFUL != ChangeDisplaySettingsEx(NULL, 
+		&devMode, NULL, CDS_RESET, NULL)) {
+			log << _T("Can't Rotate display: ") << GetLastError() << std::endl;
+	}
 
 }

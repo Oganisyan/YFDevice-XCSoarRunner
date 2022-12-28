@@ -647,7 +647,7 @@
 			IntermediateDirectory="Toradex_CE600 (ARMv4I)\$(ConfigurationName)"
 			ConfigurationType="1"
 			UseOfMFC="1"
-			CharacterSet="1"
+			CharacterSet="0"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -1967,6 +1967,7 @@
 			OutputDirectory="$(SolutionDir)Toradex_CE600 (ARMv4I)\$(ConfigurationName)"
 			IntermediateDirectory="Toradex_CE600 (ARMv4I)\$(ConfigurationName)"
 			ConfigurationType="1"
+			CharacterSet="0"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -2039,7 +2040,15 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\Config.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\MyButton.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\SocketServer.cpp"
 				>
 			</File>
 			<File
@@ -2213,11 +2222,19 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\Config.h"
+				>
+			</File>
+			<File
 				RelativePath=".\MyButton.h"
 				>
 			</File>
 			<File
 				RelativePath=".\Resource.h"
+				>
+			</File>
+			<File
+				RelativePath=".\SocketServer.h"
 				>
 			</File>
 			<File
@@ -2243,6 +2260,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\res\bitmapWindows.bmp"
+				>
+			</File>
+			<File
 				RelativePath=".\res\bt.bmp"
 				>
 			</File>
@@ -2263,6 +2284,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\res\rotate.bmp"
+				>
+			</File>
+			<File
 				RelativePath=".\res\unlock.bmp"
 				>
 			</File>
@@ -2275,10 +2300,6 @@
 				>
 			</File>
 		</Filter>
-		<File
-			RelativePath=".\ClassDiagram1.cd"
-			>
-		</File>
 		<File
 			RelativePath=".\ReadMe.txt"
 			>
